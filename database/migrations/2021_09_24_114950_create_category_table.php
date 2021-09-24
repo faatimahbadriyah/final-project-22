@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGenreTable extends Migration
+class CreateCategoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateGenreTable extends Migration
      */
     public function up()
     {
-        Schema::create('genre', function (Blueprint $table) {
+        Schema::create('category', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nama', 45);
+            $table->string('name');
         });
     }
 
@@ -26,6 +26,6 @@ class CreateGenreTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('genre');
+        Schema::dropIfExists('category');
     }
 }

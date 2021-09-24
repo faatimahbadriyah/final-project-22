@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCastTable extends Migration
+class CreateAvaliabilityTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateCastTable extends Migration
      */
     public function up()
     {
-        Schema::create('cast', function (Blueprint $table) {
+        Schema::create('avaliability', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nama', 45);
-            $table->integer('umur');
-            $table->text('bio');
+            $table->string('time');
+            $table->integer('price');
+            $table->string('status');
+            $table->unsignedInteger('lapangan_id');
+            $table->foreign('lapangan_id')->references('id')->on('lapangan');
         });
     }
 
@@ -28,6 +30,6 @@ class CreateCastTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cast');
+        Schema::dropIfExists('avaliability');
     }
 }

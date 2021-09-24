@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKritikTable extends Migration
+class CreateTransaksiTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,16 @@ class CreateKritikTable extends Migration
      */
     public function up()
     {
-        Schema::create('kritik', function (Blueprint $table) {
+        Schema::create('transaksi', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nama_tim');
+            $table->integer('durasi');
+            $table->integer('total_bayar');
+            $table->string('status');
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('film_id');
-            $table->text('isi');
-            $table->integer('point');
-            $table->timestamps();
+            $table->unsignedInteger('avaliability_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('film_id')->references('id')->on('film');
+            $table->foreign('avaliability_id')->references('id')->on('avaliability');
         });
     }
 
@@ -32,6 +33,6 @@ class CreateKritikTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kritik');
+        Schema::dropIfExists('transaksi');
     }
 }

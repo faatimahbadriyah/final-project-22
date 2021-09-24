@@ -15,8 +15,7 @@ class Controller extends BaseController
     {
         $listMenu = [
             'dashboard' => '',
-            'table' => '',
-            'cast' => '',
+            'user' => '',
         ];
         if ($menu) {
             foreach ($listMenu as $key => $value) {
@@ -27,8 +26,6 @@ class Controller extends BaseController
         }
 
         $listSubmenu = [
-            'table' => '',
-            'datatable' => '',
         ];
         if ($submenu) {
             foreach ($listSubmenu as $key => $value) {

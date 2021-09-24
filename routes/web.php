@@ -12,10 +12,8 @@
  */
 
 Auth::routes();
-Route::resource('cast', 'CastController');
+Route::resource('user', 'UserController');
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', 'AdminController@index');
-    Route::get('/table', 'AdminController@table');
-    Route::get('/data-table', 'AdminController@dataTable');
+    Route::get('/', 'HomeController@admin');
     Route::get('/home', 'HomeController@index')->name('home');
 });

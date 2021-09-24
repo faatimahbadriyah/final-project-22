@@ -3,7 +3,7 @@
     <a href="index3.html" class="brand-link">
         <img src="{{asset('adminlte/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo"
             class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">JCC LARAVEL</span>
+        <span class="brand-text font-weight-light">FINAL PROJECT</span>
     </a>
 
     <!-- Sidebar -->
@@ -15,7 +15,7 @@
                     alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Fatimah Badriyah</a>
+                <a href="#" class="d-block">Rental Field 22</a>
             </div>
         </div>
 
@@ -29,37 +29,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link {{$menu['table']}}">
-                        <i class="nav-icon fas fa-table"></i>
-                        <p>
-                            Tables
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{url('table')}}" class="nav-link {{$submenu['table']}}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Table</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{url('data-table')}}" class="nav-link {{$submenu['datatable']}}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>DataTable</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="{{url('/cast')}}" class="nav-link {{$menu['cast']}}">
-                        <i class="nav-icon fas fa-users"></i>
-                        <p>Cast</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
+                    <a class="nav-link" href="{{ route('logout') }}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="nav-icon fas fa-sign-out-alt"></i>
                         {{ __('Logout') }}
                     </a>
