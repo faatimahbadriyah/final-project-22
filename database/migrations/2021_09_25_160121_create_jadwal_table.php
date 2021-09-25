@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAvaliabilityTable extends Migration
+class CreateJadwalTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateAvaliabilityTable extends Migration
      */
     public function up()
     {
-        Schema::create('avaliability', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('time');
-            $table->integer('price');
-            $table->string('status');
-            $table->unsignedInteger('lapangan_id');
+        Schema::create('jadwal', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('jam');
+            $table->integer('harga');
+            $table->unsignedBigInteger('lapangan_id');
+            $table->string('status')->nullable();
             $table->foreign('lapangan_id')->references('id')->on('lapangan');
             $table->timestamps();
         });
@@ -31,6 +31,6 @@ class CreateAvaliabilityTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('avaliability');
+        Schema::dropIfExists('jadwal');
     }
 }

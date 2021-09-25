@@ -14,10 +14,8 @@ class CreateLapanganTable extends Migration
     public function up()
     {
         Schema::create('lapangan', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('lapangan');
-            $table->unsignedInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('category');
+            $table->bigIncrements('id');
+            $table->string('name');
             $table->timestamps();
         });
     }

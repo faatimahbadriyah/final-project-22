@@ -22,5 +22,9 @@ Route::get('/dashboard', function() {
     return view('index');
 });
 
-//CRUD Category
-Route::resource('kategori', 'CategoryController');
+
+//Crud Lapangn
+Route::resource('lapangan', 'LapanganController');
+
+//Crud Lapangn
+Route::resource('jadwal', 'JadwalController');

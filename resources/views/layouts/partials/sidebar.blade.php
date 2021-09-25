@@ -28,14 +28,6 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="/kategori" class="nav-link">
-                      <i class="nav-icon fas fa-tags"></i>
-                      <p>
-                        Kategori
-                      </p>
-                    </a>
-                  </li>
                   <li class="nav-item">
                     <a href="/lapangan" class="nav-link">
                       <i class="nav-icon fas fa-building"></i>
