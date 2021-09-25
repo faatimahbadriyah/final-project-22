@@ -8,4 +8,14 @@ class Jadwal extends Model
 {
     protected $table = 'jadwal';
     protected $fillable = ['jam', 'harga', 'lapangan_id'];
+
+    public function lapangan()
+    {
+        return $this->belongsTo('App\Lapangan');
+    }
+
+    public function transaksi()
+    {
+        return $this->hasMany('App\Transaksi');
+    }
 }

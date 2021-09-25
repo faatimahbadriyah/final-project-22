@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
-
 class HomeController extends Controller
 {
     /**
@@ -23,11 +21,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $userLogged = Auth::user();
-        if ($userLogged['role'] !== 'customer') {
-            return redirect('/');
-        }
-
         return view('home');
     }
 
@@ -38,10 +31,6 @@ class HomeController extends Controller
      */
     public function admin()
     {
-        $userLogged = Auth::user();
-        if ($userLogged['role'] !== 'admin') {
-            return redirect('/home');
-        }
 
         $activeMenu = $this->activeMenu('dashboard', '');
         $data = [
