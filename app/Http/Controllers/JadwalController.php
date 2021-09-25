@@ -50,7 +50,8 @@ class JadwalController extends Controller
         Jadwal::create([
             'jam' => $request->jam,
             'harga' => $request->harga,
-            'lapangan_id' => $request->lapangan_id
+            'lapangan_id' => $request->lapangan_id,
+            'status' => 'available'
         ]);
 
         return redirect('/jadwal');
