@@ -20,6 +20,7 @@ class CreateAvaliabilityTable extends Migration
             $table->string('status');
             $table->unsignedInteger('lapangan_id');
             $table->foreign('lapangan_id')->references('id')->on('lapangan');
+            $table->timestamps();
         });
     }
 

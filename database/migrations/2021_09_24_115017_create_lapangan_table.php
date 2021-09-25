@@ -18,6 +18,7 @@ class CreateLapanganTable extends Migration
             $table->string('lapangan');
             $table->unsignedInteger('category_id');
             $table->foreign('category_id')->references('id')->on('category');
+            $table->timestamps();
         });
     }
 

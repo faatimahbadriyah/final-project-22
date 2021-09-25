@@ -23,6 +23,7 @@ class CreateTransaksiTable extends Migration
             $table->unsignedInteger('avaliability_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('avaliability_id')->references('id')->on('avaliability');
+            $table->timestamps();
         });
     }
 
