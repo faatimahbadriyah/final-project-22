@@ -23,11 +23,35 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a href="{{url('/')}}" class="nav-link {{$menu['dashboard']}}">
+                    <a href="{{url('/')}}" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="/kategori" class="nav-link">
+                      <i class="nav-icon fas fa-tags"></i>
+                      <p>
+                        Kategori
+                      </p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/lapangan" class="nav-link">
+                      <i class="nav-icon fas fa-building"></i>
+                      <p>
+                        Lapangan
+                      </p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/jadwal" class="nav-link">
+                      <i class="nav-icon fas fa-calendar-check"></i>
+                      <p>
+                        Jadwal
+                      </p>
+                    </a>
+                  </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('logout') }}"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

@@ -12,8 +12,15 @@
  */
 
 Auth::routes();
-Route::resource('user', 'UserController');
+// Route::resource('user', 'UserController');
 Route::middleware(['auth'])->group(function () {
     Route::get('/', 'HomeController@admin');
     Route::get('/home', 'HomeController@index')->name('home');
 });
+
+Route::get('/dashboard', function() {
+    return view('index');
+});
+
+//CRUD Category
+Route::resource('kategori', 'CategoryController');
