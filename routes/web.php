@@ -37,5 +37,5 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 Route::get('/denied', function () {
-    return view('denied');
+    return view('email');
 });

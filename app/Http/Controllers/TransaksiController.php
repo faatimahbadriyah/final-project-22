@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Jadwal;
 use App\Lapangan;
+use App\Mail\RFMail;
 use App\Transaksi;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class TransaksiController extends Controller
@@ -173,9 +175,23 @@ class TransaksiController extends Controller
      */
     public function updateStatus($status, $id)
     {
-        $transaksi = Transaksi::where('id', $id)->first();
+        $transaksi = Transaksi::with(['user'])->where('id', $id)->first();
         $transaksi->status = $status;
         $transaksi->update();
+
+        $details = [
+            'subject' => 'Notifikasi Booking Rental22',
+        ];
+
+        if ($status == 'approve') {
+            $details['title'] = 'Transaksi Berhasil';
+            $details['body'] = 'Pembayaran kamu telah diverifikasi admin. Silahkan download invoice pembelian di halaman dashboard. Terimakasih telah melakukan sewa lapangan. :)';
+        } else {
+            $details['title'] = 'Transaksi Gagal';
+            $details['body'] = 'Pembayaran kamu tidak dapat diverifikasi. Silahkan hubungi kami melalui email rentalfield22@gmail.com. :)';
+        }
+
+        Mail::to($transaksi->user->email)->send(new RFMail($details));
 
         return redirect('/transaksi');
     }
