@@ -25,7 +25,10 @@ Route::middleware(['auth'])->group(function () {
 
     //Crud Transaksi
     Route::resource('transaksi', 'TransaksiController');
-    Route::post('transaksi/upload', 'TransaksiController@upload');
+    Route::prefix('transaksi')->group(function () {
+        Route::post('/upload', 'TransaksiController@upload');
+        Route::get('/update/{status}/{id}', 'TransaksiController@updateStatus');
+    });
 
     Route::get('/dashboard', function () {
         return view('index');

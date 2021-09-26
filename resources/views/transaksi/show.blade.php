@@ -24,7 +24,7 @@
                 @elseif($transaksi->status == 'checking')
                 <strong>Sedang dicek admin</strong>
                 @else
-                <strong>Selesai</strong>
+                <strong>Selesai. Transaksi kamu {{ $transaksi->status == 'approve' ? 'Berhasil' : 'Gagal' }}</strong>
                 @endif
             </li>
         </ul>

@@ -19,7 +19,7 @@ Tambah Data Transaksi
                 <input type="text" class="form-control" name="nama_tim" id="nama_tim" placeholder="Enter ..." required>
             </div>
             <div class="row">
-                @foreach($lapangan as $lap)
+                @forelse($lapangan as $lap)
                 <div class="col-md-3 col-12">
                     <h6><strong>{{$lap->name}}</strong></h6>
                     @foreach($lap->jadwal as $j)
@@ -29,12 +29,16 @@ Tambah Data Transaksi
                     </div>
                     @endforeach
                 </div>
-                @endforeach
+                @empty
+                <p>Tidak ada data lapangan</p>
+                @endforelse
             </div>
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
+            @if(!$lapangan->isEmpty())
             <button type="submit" class="btn btn-primary">Submit</button>
+            @endif
             <a href="{{url('transaksi')}}" class="btn btn-default float-right">Cancel</a>
         </div>
     </form>

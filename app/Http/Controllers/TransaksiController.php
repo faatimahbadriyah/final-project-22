@@ -37,7 +37,7 @@ class TransaksiController extends Controller
     public function create()
     {
         $lapangan = Lapangan::with(['jadwal' => function ($q) {
-            $q->where('status', 'avaliable');
+            $q->where('status', 'available');
         }])->get();
         return view('transaksi.create', compact('lapangan'));
     }
@@ -93,7 +93,7 @@ class TransaksiController extends Controller
     {
         $transaksi = Transaksi::where('id', $id)->first();
         $lapangan = Lapangan::with(['jadwal' => function ($q) {
-            $q->where('status', 'avaliable');
+            $q->where('status', 'available');
         }])->get();
         return view('transaksi.edit', compact('transaksi', 'lapangan'));
     }
@@ -118,7 +118,7 @@ class TransaksiController extends Controller
         if ($transaksi) {
             $newJadwal->status = 'booked';
             $newJadwal->update();
-            $oldJadwal->status = 'avaliable';
+            $oldJadwal->status = 'available';
             $oldJadwal->update();
         }
 
@@ -133,7 +133,8 @@ class TransaksiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $transaksi = Transaksi::where('id', $id)->delete();
+        return redirect('transaksi');
     }
 
     /**
@@ -144,7 +145,6 @@ class TransaksiController extends Controller
      */
     public function upload(Request $request)
     {
-
         $this->validate($request, [
             'fileBukti' => 'required|file|image|max:2000', // max 7MB
         ]);
@@ -155,11 +155,26 @@ class TransaksiController extends Controller
         $extension = $request->file('fileBukti')->getClientOriginalExtension();
         $filenameSimpan = $filename . '_' . time() . '.' . $extension;
 
-        $saveFile = $file->storeAs('bukti-bayar', $filenameSimpan);
+        $saveFile = $file->storeAs('public/bukti-bayar', $filenameSimpan);
 
         $transaksi = Transaksi::where('id', $request->trxId)->first();
         $transaksi->status = 'checking';
         $transaksi->file_bayar = $filenameSimpan;
+        $transaksi->update();
+
+        return redirect('/transaksi');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function updateStatus($status, $id)
+    {
+        $transaksi = Transaksi::where('id', $id)->first();
+        $transaksi->status = $status;
         $transaksi->update();
 
         return redirect('/transaksi');

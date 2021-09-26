@@ -43,10 +43,12 @@ Transaksi Booking
                     </form>
                     @endif
                     @else
-                    <a href="'transaksi/download/{{$value->id}}" class="btn btn-info btn-xs btn-block">Download Bukti
-                        Bayar</a>
-                    <a href="'transaksi/verify/{{$value->id}}" class="btn btn-primary btn-xs btn-block">Verify</a>
-                    <a href="'transaksi/reject/{{$value->id}}" class="btn btn-danger btn-xs btn-block">Reject</a>
+                    <a href="#" class="btn btn-info btn-xs btn-block" type="button" data-toggle="modal"
+                        data-target="#modal-bukti" data-trx-file="{{$value->file_bayar}}"
+                        data-trx-tim="{{$value->nama_tim}}">Lihat Bukti Bayar</a>
+                    <a href="transaksi/update/approve/{{$value->id}}"
+                        class="btn btn-primary btn-xs btn-block">Approve</a>
+                    <a href="transaksi/update/reject/{{$value->id}}" class="btn btn-danger btn-xs btn-block">Reject</a>
                     @endif
                 </td>
             </tr>
@@ -59,6 +61,8 @@ Transaksi Booking
         <tfoot>
     </table>
 </div>
+<!-- /.card-body -->
+
 <div class="modal fade" id="modal-sm">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
@@ -87,7 +91,27 @@ Transaksi Booking
     </div>
     <!-- /.modal-dialog -->
 </div>
-<!-- /.card-body -->
+
+<div class="modal fade" id="modal-bukti">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img class="img-fluid">
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
 @endsection
 @push('scripts')
 <script>
@@ -95,6 +119,12 @@ $(function() {
     $('#modal-sm').on('show.bs.modal', function(e) {
         var trxId = $(e.relatedTarget).data('trx-id');
         $(e.currentTarget).find('input[name="trxId"]').val(trxId);
+    });
+    $('#modal-bukti').on('show.bs.modal', function(e) {
+        var trxFilename = $(e.relatedTarget).data('trx-file');
+        var trxTim = $(e.relatedTarget).data('trx-tim');
+        $('img').attr('src', 'storage/bukti-bayar/' + trxFilename);
+        $('.modal-title').html('File Bukti Bayar ' + trxTim);
     });
 });
 </script>
