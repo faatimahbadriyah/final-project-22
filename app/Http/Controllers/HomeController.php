@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -23,34 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $userLogged = Auth::user();
-        if ($userLogged['role'] !== 'customer') {
-            return redirect('/');
-        }
-
         return view('home');
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function admin()
-    {
-        $userLogged = Auth::user();
-        if ($userLogged['role'] !== 'admin') {
-            return redirect('/home');
-        }
-
-        $activeMenu = $this->activeMenu('dashboard', '');
-        $data = [
-            'title' => 'DASHBOARD',
-            'parent' => 'Home',
-            'child' => 'dashboard',
-            'menu' => $activeMenu['menu'],
-            'submenu' => $activeMenu['submenu'],
-        ];
-        return view('index', $data);
     }
 }

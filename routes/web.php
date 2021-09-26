@@ -16,15 +16,21 @@ Auth::routes();
 Route::middleware(['auth'])->group(function () {
     Route::get('/', 'HomeController@admin');
     Route::get('/home', 'HomeController@index')->name('home');
+
+    //Crud Lapangan
+    Route::resource('lapangan', 'LapanganController');
+
+    //Crud Jadwal
+    Route::resource('jadwal', 'JadwalController');
+
+    //Crud Transaksi
+    Route::resource('transaksi', 'TransaksiController');
+    Route::post('transaksi/upload', 'TransaksiController@upload');
+
+    //CRUD Profile
+    Route::resource('profiles', 'ProfileController');
+
+    Route::get('/dashboard', function () {
+        return view('index');
+    });
 });
-
-Route::get('/dashboard', function() {
-    return view('index');
-});
-
-
-//Crud Lapangn
-Route::resource('lapangan', 'LapanganController');
-
-//Crud Lapangn
-Route::resource('jadwal', 'JadwalController');
