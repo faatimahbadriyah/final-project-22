@@ -45,7 +45,7 @@
 <body>
 
     <header>
-        <h2><a href=" #">Online Booking</a></h2>
+        <h2><a href="/transaksi">Online Booking</a></h2>
         <nav>
             <li><a href="/">Home</a></li>
             <li><a href="/login">Login</a></li>
