@@ -46,6 +46,7 @@ class LapanganController extends Controller
             'name' => $request->name
         ]);
 
+        toastr()->success('Data Berhasil Disimpan!');
         return redirect('/lapangan');
     }
 
@@ -88,6 +89,8 @@ class LapanganController extends Controller
         $lapang = Lapangan::find($id);
         $lapang->name = $request->name;
         $lapang->update();
+
+        toastr()->success('Data Berhasil Diubah!');
         return redirect('/lapangan');
     }
 

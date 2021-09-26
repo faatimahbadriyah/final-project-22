@@ -5,7 +5,19 @@ Tambah Data Transaksi
 @endsection
 
 @section('content')
-<div class="card card-primary card-outline">
+<style>
+/* label.btn-default.active{background-color:#007ba7;color:#FFF}
+label.btn-default{width:90%;border:1px solid #efefef;margin:5px; box-shadow:5px 8px 8px 0 #ccc;}
+label .bizcontent{width:100%;}
+.btn-group{width:90%}
+.btn span.glyphicon{
+    opacity: 0;
+}
+.btn.active span.glyphicon {
+    opacity: 1;
+} */
+</style>
+<div class="card card-orange card-outline">
     <div class="card-header">
         <h3 class="card-title">Lengkapi form berikut.</h3>
     </div>
@@ -20,12 +32,27 @@ Tambah Data Transaksi
             </div>
             <div class="row">
                 @forelse($lapangan as $lap)
-                <div class="col-md-3 col-12">
+                <div class="col-md-3 col-sm-6 col-xs-6 col-12">
                     <h6><strong>{{$lap->name}}</strong></h6>
                     @forelse($lap->jadwal as $j)
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="jadwal_id" value="{{$j->id}}" required>
-                        <label class="form-check-label">{{$j->jam}} --- <strong>Rp.{{$j->harga}}</strong></label>
+                    <!-- <div class="custom-control custom-radio">
+                        <input class="custom-radio-input" type="radio" id="jadwal_{{$lap->name}}_{{$j->id}}" name="jadwal_id" value="{{$j->id}}" required>
+                        <label class="custom-radio-label" for="jadwal_{{$lap->name}}_{{$j->id}}">{{$j->jam}} --- <strong>Rp.{{$j->harga}}</strong></label>
+                    </div> -->
+                    <div class="info-block block-info">
+                        <div data-toggle="buttons" class="btn-group">
+                            <label class="btn btn-secondary">
+                                <div class="bizcontent">
+                                    <input class="checkbox" type="checkbox" name="jadwal_id" value="{{$j->id}}" style="position:absolute; right:0; top:0">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <span class="text-sm font-weight-normal">{{$j->jam}}</span>
+                                            <h3><strong>Rp.{{$j->harga}}</strong></h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
                     </div>
                     @empty
                     <p>Penuh</p>

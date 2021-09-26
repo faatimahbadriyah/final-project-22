@@ -14,22 +14,28 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Tempusdominus Bootstrap 4 -->
-    <link rel="stylesheet"
-        href="{{asset('adminlte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
+    <!-- <link rel="stylesheet"
+        href="{{asset('adminlte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}"> -->
     <!-- iCheck -->
     <link rel="stylesheet" href="{{asset('adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
     <!-- JQVMap -->
     <link rel="stylesheet" href="{{asset('adminlte/plugins/jqvmap/jqvmap.min.css')}}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('adminlte/dist/css/adminlte.min.css')}}">
+    <!-- dark -->
+    <link rel="stylesheet" href="{{ asset('css/dark.css') }}" >
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="{{asset('adminlte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
     <!-- Daterange picker -->
     <link rel="stylesheet" href="{{asset('adminlte/plugins/daterangepicker/daterangepicker.css')}}">
     <!-- summernote -->
     <link rel="stylesheet" href="{{asset('adminlte/plugins/summernote/summernote-bs4.min.css')}}">
+
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}" >
+
     <!-- Datatables -->
     @stack('style')
+    @toastr_css
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -37,8 +43,8 @@
 
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="{{asset('adminlte/dist/img/AdminLTELogo.png')}}" alt="AdminLTELogo"
-                height="60" width="60">
+            <img class="animation__wobble" src="{{asset('img/ball2.png')}}" alt="AdminLTELogo"
+                height="160">
         </div>
 
         <!-- Navbar -->
@@ -107,6 +113,8 @@
     <!-- AdminLTE for demo purposes -->
     <script src="{{asset('adminlte/dist/js/demo.js')}}"></script>
     @stack('scripts')
+    @toastr_js
+    @toastr_render
 </body>
 
 </html>

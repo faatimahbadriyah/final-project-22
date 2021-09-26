@@ -20,7 +20,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-      <h3 class="card-title"><a href="/jadwal/create" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Data</a>
+      <h3 class="card-title"><a href="/jadwal/create" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data</a>
       </h3>
     </div>
     <!-- /.card-header -->

@@ -1,8 +1,9 @@
+<div class="test main-sidebar"></div>
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-        <img src="{{ asset('adminlte/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
-            class="brand-image img-circle elevation-3" style="opacity: .8">
+    <a href="{{url('')}}" class="brand-link">
+        <!-- <img src="{{ asset('adminlte/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
+            class="brand-image img-circle elevation-3" style="opacity: .8"> -->
         <span class="brand-text font-weight-light">FINAL PROJECT</span>
     </a>
 
@@ -15,22 +16,22 @@
                     alt="User Image">
             </div>
             <div class="info">
-                <a href="/profiles" class="d-block">Profil: {{Auth::user()->name}}</a>
+                <a href="/profiles" class="d-block">{{Auth::user()->name}}</a>
             </div>
         </div>
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                @if (Auth::user()['role'] == 'admin')
                 <li class="nav-item">
-                    <a href="{{ url('/') }}" class="nav-link">
+                    <a href="{{ url('/') }}" class="nav-link {{set_active(['/',''])}}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
+                @if (Auth::user()['role'] == 'admin')
                 <li class="nav-item">
-                    <a href="/lapangan" class="nav-link">
+                    <a href="/lapangan" class="nav-link {{set_active(['lapangan'])}}">
                         <i class="nav-icon fas fa-building"></i>
                         <p>
                             Lapangan
@@ -38,7 +39,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/jadwal" class="nav-link">
+                    <a href="/jadwal" class="nav-link {{set_active('jadwal')}}">
                         <i class="nav-icon fas fa-calendar-check"></i>
                         <p>
                             Jadwal
@@ -47,7 +48,7 @@
                 </li>
                 @endif
                 <li class="nav-item">
-                    <a href="/transaksi" class="nav-link">
+                    <a href="/transaksi" class="nav-link {{set_active('transaksi')}}">
                         <i class="nav-icon fas fa-shopping-cart"></i>
                         <p>
                             Transaksi
@@ -58,7 +59,7 @@
                     <a class="nav-link" href="{{ route('logout') }}"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="nav-icon fas fa-sign-out-alt"></i>
-                        {{ __('Logout') }}
+                        <p>{{ __('Logout') }}</p>
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf

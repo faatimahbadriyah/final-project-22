@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Jadwal;
 use App\Lapangan;
+use App\Mail\RFMail;
 use App\Transaksi;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use PDF;
 
 class TransaksiController extends Controller
 {
@@ -24,6 +27,7 @@ class TransaksiController extends Controller
         } else {
             $transaksi = Transaksi::with(['jadwal', 'jadwal.lapangan'])
                 ->where('user_id', $user['id'])
+                ->where('created_at', '>=', date('Y-m-d') . ' 00:00:00')
                 ->get();
         }
         return view('transaksi.index', compact('transaksi'));
@@ -66,6 +70,7 @@ class TransaksiController extends Controller
             $jadwal->update();
         }
 
+        toastr()->success('Data Berhasil Disimpan!');
         return redirect('/transaksi');
     }
 
@@ -122,6 +127,7 @@ class TransaksiController extends Controller
             $oldJadwal->update();
         }
 
+        toastr()->success('Data Berhasil Diubah!');
         return redirect('/transaksi');
     }
 
@@ -173,10 +179,33 @@ class TransaksiController extends Controller
      */
     public function updateStatus($status, $id)
     {
-        $transaksi = Transaksi::where('id', $id)->first();
+        $transaksi = Transaksi::with(['user'])->where('id', $id)->first();
         $transaksi->status = $status;
         $transaksi->update();
 
+        $details = [
+            'subject' => 'Notifikasi Booking Rental22',
+        ];
+
+        if ($status == 'approve') {
+            $details['title'] = 'Transaksi Berhasil';
+            $details['body'] = 'Pembayaran kamu telah diverifikasi admin. Silahkan download invoice pembelian di halaman dashboard. Terimakasih telah melakukan sewa lapangan. :)';
+        } else {
+            $details['title'] = 'Transaksi Gagal';
+            $details['body'] = 'Pembayaran kamu tidak dapat diverifikasi. Silahkan hubungi kami melalui email rentalfield22@gmail.com. :)';
+        }
+
+        Mail::to($transaksi->user->email)->send(new RFMail($details));
+
         return redirect('/transaksi');
+    }
+
+    public function invoice($id)
+    {
+        $transaksi = Transaksi::with(['user', 'jadwal', 'jadwal.lapangan'])->where('id', $id)->first();
+
+        $pdf = PDF::loadView('invoice', ['data' => $transaksi]);
+
+        return $pdf->download('invoice-' . now() . '.pdf');
     }
 }
