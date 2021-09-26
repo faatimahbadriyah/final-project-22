@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Lapangan;
+
 class HomeController extends Controller
 {
     /**

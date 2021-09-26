@@ -13,7 +13,7 @@
 
 Auth::routes();
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', 'HomeController@admin');
+    
     Route::get('/home', 'HomeController@index')->name('home');
 
     //Crud Lapangan
@@ -37,6 +37,10 @@ Route::middleware(['auth'])->group(function () {
         return view('index');
     });
 });
-Route::get('/denied', function () {
-    return view('invoice');
+    Route::get('/denied', function () {
+    return view('denied');
+});
+
+    Route::get('/', function () {
+    return view('index');
 });

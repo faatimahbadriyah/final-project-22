@@ -2,72 +2,96 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use DB;
 use App\Profile;
 use Auth;
+use Illuminate\Http\Request;
 
 class ProfileController extends Controller
-{   
-    // THIS FUNCTION TO PROHIBIT BYPASS OF CERTAIN PAGES, MIDDLEWARE
-    public function __construct() {
-        $this->middleware('auth')->except(['index']); //except||only
-    }
-    
-    public function create() {
-        return view ('profiles.create');
+{
+    public function create()
+    {
+        return view('profiles.create');
     }
 
+<<<<<<< HEAD
     public function store(Request $request) {
-        // dd($request->all());
+=======
+    public function store(Request $request)
+    {
+>>>>>>> 9e1098aa1ca1cce7f5555e7fb565971f52871b7f
         $request->validate([
             'fullname' => 'required',
             'gender' => 'required',
             'address' => 'required',
             'phone' => 'required',
-                
+            'photo' => 'required|image|max:2000', // max 2MB
         ]);
 
-        $profile = Profile::create([
-            "fullname" => $request["fullname"],
-            "gender" => $request["gender"],
-            "address" => $request["address"],
-            "phone" => $request["phone"],
-            "photo" => $request["photo"],
-            "user_id" => Auth::id()
-        ]);
+        $file = $request->file('photo');
+        $filenameWithExt = $file->getClientOriginalName();
+        $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+        $extension = $request->file('photo')->getClientOriginalExtension();
+        $filenameSimpan = $filename . '_' . time() . '.' . $extension;
+
+        $saveFile = $file->storeAs('public/profiles', $filenameSimpan);
+        if ($saveFile) {
+            $profile = Profile::create([
+                "fullname" => $request["fullname"],
+                "gender" => $request["gender"],
+                "address" => $request["address"],
+                "phone" => $request["phone"],
+                "photo" => $filenameSimpan,
+                "user_id" => Auth::id(),
+            ]);
+        }
+
         return redirect('profiles')->with('success', 'Profil berhasil disimpan.');
     }
 
-    public function index() {
+    public function index()
+    {
         $user = Auth::user();
-        $profiles = Profile::all(); 
-        return view ('profiles.index', compact('profiles'));
+        $profiles = Profile::all();
+        return view('profiles.index', compact('profiles'));
     }
 
-    public function show($id) {
+    public function show($id)
+    {
         $profiles = Profile::find($id);
         return view('profiles.show', compact('profiles'));
     }
 
-    public function edit($id) {
+    public function edit($id)
+    {
         $profiles = Profile::find($id);
         return view('profiles.edit', compact('profiles'));
     }
 
-    public function update($id, Request $request) {
-        $update = Profile::where ('id', $id)->update([
-            "fullname" => $request["fullname"],
-            "gender" => $request["gender"],
-            "address" => $request["address"],
-            "phone" => $request["phone"],
-            "photo" => $request["photo"]
-        ]);
+    public function update($id, Request $request)
+    {
+        $profile = Profile::where('id', $id)->first();
+
+        if ($request->file('photo')) {
+            $file = $request->file('photo');
+            $filenameWithExt = $file->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('photo')->getClientOriginalExtension();
+            $filenameSimpan = $filename . '_' . time() . '.' . $extension;
+            $saveFile = $file->storeAs('public/profiles', $filenameSimpan);
+            $profile->photo = $filenameSimpan;
+        }
+
+        $profile->fullname = $request["fullname"];
+        $profile->gender = $request["gender"];
+        $profile->address = $request["address"];
+        $profile->phone = $request["phone"];
+        $profile->update();
+
         return redirect('/profiles')->with('success', 'Profile berhasil disimpan!');
     }
 
-    public function destroy($id) {
-        // $query = DB::table('profile')->where('id', $id)->delete();
+    public function destroy($id)
+    {
         Profile::destroy($id);
         return redirect('/profiles')->with('success', "Profile telah dihapus.");
     }
