@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Lapangan;
 class HomeController extends Controller
 {
     /**
@@ -31,6 +31,9 @@ class HomeController extends Controller
      */
     public function admin()
     {
-        return view('index');
+        $lapangan = Lapangan::with(['jadwal' => function ($q) {
+            $q->where('status', 'avaliable');
+        }])->get();
+        return view('index', compact('lapangan'));
     }
 }

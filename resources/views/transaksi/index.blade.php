@@ -20,7 +20,7 @@ Transaksi Booking
 @section('content')
 <div class="card-header">
     <h3 class="card-title">
-        <a href="/transaksi/create" class="btn btn-success">
+        <a href="/transaksi/create" class="btn btn-primary">
             <i class="fa fa-plus"></i> Pesan Lapangan
         </a>
     </h3>
