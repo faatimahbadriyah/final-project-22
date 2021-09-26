@@ -30,6 +30,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/update/{status}/{id}', 'TransaksiController@updateStatus');
     });
 
+    //CRUD Profile
+    Route::resource('profiles', 'ProfileController');
+
     Route::get('/dashboard', function () {
         return view('index');
     });

@@ -6,14 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Profile extends Model
 {
+    // protected $table = "postingan"; 
+    // jika seandainya table yang terhubung tidak auto-sync karena bahasa Indo
 
-    public $timestamps = false;
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'gender', 'address', 'phone', 'photo',
-    ];
+    protected $table = "profiles";
+    // protected $fillable = ["title", "body", "user_id"]; // whitelist
+    protected $guarded = []; //blacklist
+
+    public function user() {
+        return $this->belongsTo('App\User');
+    }
+
+    public function author() {
+        return $this->belongsTo('App\User', 'user_id');
+    }
 }

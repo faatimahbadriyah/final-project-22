@@ -15,7 +15,7 @@
                     alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Rental Field 22</a>
+                <a href="/profiles" class="d-block">Profil: {{Auth::user()->name}}</a>
             </div>
         </div>
 
