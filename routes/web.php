@@ -12,22 +12,21 @@
  */
 
 Auth::routes();
-// Route::resource('user', 'UserController');
 Route::middleware(['auth'])->group(function () {
     Route::get('/', 'HomeController@admin');
     Route::get('/home', 'HomeController@index')->name('home');
 
     //Crud Lapangan
-    Route::resource('lapangan', 'LapanganController');
+    Route::resource('lapangan', 'LapanganController')->middleware('role:admin');
 
     //Crud Jadwal
-    Route::resource('jadwal', 'JadwalController');
+    Route::resource('jadwal', 'JadwalController')->middleware('role:admin');;
 
     //Crud Transaksi
     Route::resource('transaksi', 'TransaksiController');
     Route::prefix('transaksi')->group(function () {
-        Route::post('/upload', 'TransaksiController@upload');
-        Route::get('/update/{status}/{id}', 'TransaksiController@updateStatus');
+        Route::post('/upload', 'TransaksiController@upload')->middleware('role:member');
+        Route::get('/update/{status}/{id}', 'TransaksiController@updateStatus')->middleware('role:admin');;
     });
 
     //CRUD Profile
@@ -36,4 +35,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
         return view('index');
     });
+});
+Route::get('/denied', function () {
+    return view('denied');
 });

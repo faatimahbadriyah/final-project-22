@@ -22,12 +22,14 @@ Tambah Data Transaksi
                 @forelse($lapangan as $lap)
                 <div class="col-md-3 col-12">
                     <h6><strong>{{$lap->name}}</strong></h6>
-                    @foreach($lap->jadwal as $j)
+                    @forelse($lap->jadwal as $j)
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="jadwal_id" value="{{$j->id}}" required>
                         <label class="form-check-label">{{$j->jam}} --- <strong>Rp.{{$j->harga}}</strong></label>
                     </div>
-                    @endforeach
+                    @empty
+                    <p>Penuh</p>
+                    @endforelse
                 </div>
                 @empty
                 <p>Tidak ada data lapangan</p>

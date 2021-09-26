@@ -22,8 +22,8 @@ class CreateTransaksiTable extends Migration
             $table->string('status');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('jadwal_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('jadwal_id')->references('id')->on('jadwal');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('jadwal_id')->references('id')->on('jadwal')->onDelete('cascade');
             $table->timestamps();
         });
     }

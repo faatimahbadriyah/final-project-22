@@ -21,7 +21,7 @@ class CreateProfilesTable extends Migration
             $table->string('phone');
             $table->string('photo');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
             $table->timestamps();
         });
     }

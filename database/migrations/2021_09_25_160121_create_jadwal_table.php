@@ -19,7 +19,7 @@ class CreateJadwalTable extends Migration
             $table->integer('harga');
             $table->unsignedBigInteger('lapangan_id');
             $table->string('status')->nullable();
-            $table->foreign('lapangan_id')->references('id')->on('lapangan');
+            $table->foreign('lapangan_id')->references('id')->on('lapangan')->onDelete('cascade');;
             $table->timestamps();
         });
     }
