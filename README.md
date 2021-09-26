@@ -5,20 +5,20 @@
 ### Anggota Kelompok
 
 <ul>
-    <li>Muhammad Faisal Abduh</li>
-    <li>Dina Fauziyah</li>
-    <li>Fatimah Ulwiyatul</li>
+    <li>Muhammad Faisal Abduh (muzhafr2@gmail.com) </li>
+    <li>Dina Fauziyah (dfauziyah18@gmail.com)</li>
+    <li>Fatimah Ulwiyatul (faatimahbadriyah@gmail.com) </li>
 </ul>
 
 ## Tema Project
 
-Aplikasi Booking Saraga
+Aplikasi Booking Futsal
 
 <br>
 
 # ERD
 
-![](public/img/ERD/ERD%20Aplikasi%20Booking.png)
+![](public/img/ERD/ERD-Booking-Futsal.png)
 
 <br>
 
@@ -27,3 +27,7 @@ Aplikasi Booking Saraga
 Link Demo Aplikasi:
 
 Link Deploy:
+
+<br>
+
+# Pembagian Tugas
