@@ -13,14 +13,19 @@ class CreateProfilesTable extends Migration
      */
     public function up()
     {
+<<<<<<< HEAD:database/migrations/2021_09_16_122927_create_profiles_table.php
         Schema::create('profiles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('fullname');
+=======
+        Schema::create('profile', function (Blueprint $table) {
+            $table->bigIncrements('id');
+>>>>>>> 9254790dc42f0f785d168803d1260f18eb94bcb1:database/migrations/2021_09_16_122927_create_profile_table.php
             $table->string('gender');
             $table->longText('address');
             $table->string('phone');
             $table->string('photo');
-            $table->unsignedInteger('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });

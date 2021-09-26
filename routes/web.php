@@ -27,9 +27,12 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('transaksi', 'TransaksiController');
     Route::post('transaksi/upload', 'TransaksiController@upload');
 
+<<<<<<< HEAD
     //CRUD Profile
     Route::resource('profiles', 'ProfileController');
 
+=======
+>>>>>>> 9254790dc42f0f785d168803d1260f18eb94bcb1
     Route::get('/dashboard', function () {
         return view('index');
     });
