@@ -152,7 +152,7 @@ class TransaksiController extends Controller
     public function upload(Request $request)
     {
         $this->validate($request, [
-            'fileBukti' => 'required|file|image|max:2000', // max 7MB
+            'fileBukti' => 'required|image|max:2000', // max 2MB
         ]);
 
         $file = $request->file('fileBukti');
