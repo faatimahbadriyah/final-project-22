@@ -26,6 +26,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('transaksi', 'TransaksiController');
     Route::prefix('transaksi')->group(function () {
         Route::post('/upload', 'TransaksiController@upload')->middleware('role:member');
+        Route::get('/invoice/{id}', 'TransaksiController@invoice')->middleware('role:member');
         Route::get('/update/{status}/{id}', 'TransaksiController@updateStatus')->middleware('role:admin');;
     });
 
@@ -37,5 +38,5 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 Route::get('/denied', function () {
-    return view('email');
+    return view('invoice');
 });

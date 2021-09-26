@@ -5,8 +5,10 @@ Transaksi Booking
 
 @section('content')
 <div class="card-header">
-    <h3 class="card-title"><a href="/transaksi/create" class="btn btn-success"><i class="fa fa-plus"></i> Tambah
-            Data</a>
+    <h3 class="card-title">
+        <a href="/transaksi/create" class="btn btn-success">
+            <i class="fa fa-plus"></i> Pesan Lapangan
+        </a>
     </h3>
 </div>
 <div class="card-body">
@@ -41,6 +43,9 @@ Transaksi Booking
                         @method('DELETE')
                         <input type="submit" class="btn btn-danger btn-xs btn-block mt-2" value="Delete">
                     </form>
+                    @elseif($value->status == 'approve')
+                    <a href="/transaksi/invoice/{{$value->id}}" class="btn btn-primary btn-xs btn-block">Download
+                        Invoice</a>
                     @endif
                     @else
                     <a href="#" class="btn btn-info btn-xs btn-block" type="button" data-toggle="modal"
@@ -123,7 +128,7 @@ $(function() {
     $('#modal-bukti').on('show.bs.modal', function(e) {
         var trxFilename = $(e.relatedTarget).data('trx-file');
         var trxTim = $(e.relatedTarget).data('trx-tim');
-        $('img').attr('src', 'storage/bukti-bayar/' + trxFilename);
+        $('#modal-bukti img').attr('src', 'storage/bukti-bayar/' + trxFilename);
         $('.modal-title').html('File Bukti Bayar ' + trxTim);
     });
 });

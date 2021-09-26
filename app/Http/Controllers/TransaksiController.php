@@ -10,6 +10,7 @@ use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use PDF;
 
 class TransaksiController extends Controller
 {
@@ -26,6 +27,7 @@ class TransaksiController extends Controller
         } else {
             $transaksi = Transaksi::with(['jadwal', 'jadwal.lapangan'])
                 ->where('user_id', $user['id'])
+                ->where('created_at', '>=', date('Y-m-d') . ' 00:00:00')
                 ->get();
         }
         return view('transaksi.index', compact('transaksi'));
@@ -194,5 +196,14 @@ class TransaksiController extends Controller
         Mail::to($transaksi->user->email)->send(new RFMail($details));
 
         return redirect('/transaksi');
+    }
+
+    public function invoice($id)
+    {
+        $transaksi = Transaksi::with(['user', 'jadwal', 'jadwal.lapangan'])->where('id', $id)->first();
+
+        $pdf = PDF::loadView('invoice', ['data' => $transaksi]);
+
+        return $pdf->download('invoice-' . now() . '.pdf');
     }
 }
