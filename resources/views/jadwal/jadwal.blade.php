@@ -31,7 +31,7 @@
           <th>#</th>
           <th>Jam</th>
           <th>Harga</th>
-          <th>Actions</th>
+          <th class="text-center" style="width:180px">Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -40,7 +40,7 @@
                 <td>{{$key + 1}}</th>
                 <td>{{$value->jam}}</td>
                 <td>{{$value->harga}}</td>
-                <td>
+                <td class="text-center">
                     <form action="/jadwal/{{$value->id}}" method="POST">
                         @csrf
                         @method('DELETE')

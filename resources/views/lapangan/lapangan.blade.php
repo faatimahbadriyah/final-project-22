@@ -30,7 +30,7 @@
         <tr>
           <th>#</th>
           <th>Nama Lapang</th>
-          <th>Actions</th>
+          <th class="text-center" style="width:180px">Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -38,7 +38,7 @@
             <tr>
                 <td>{{$key + 1}}</th>
                 <td>{{$value->name}}</td>
-                <td>
+                <td class="text-center">
                     <form action="/lapangan/{{$value->id}}" method="POST">
                         @csrf
                         @method('DELETE')

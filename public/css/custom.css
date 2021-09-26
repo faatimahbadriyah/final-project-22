@@ -62,3 +62,61 @@ body {
 .preloader{
     background-color: #5038257d;
 }
+/* Base for label styling */
+/* [type="radio"]:not(:checked){
+  position: absolute;
+  left: -9999px;
+} */
+[type="radio"]:not(:checked),
+[type="radio"]:checked {
+  position: relative;
+  padding-left: 1.95em;
+  cursor: pointer;
+}
+
+/* radio aspect */
+[type="radio"]:not(:checked):before,
+[type="radio"]:checked:before {
+  content: '';
+  position: absolute;
+  right: 0; top: 0;
+  width: 1.25em; height: 1.25em;
+  border: 2px solid #ccc;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,.1);
+}
+/* checked mark aspect */
+[type="radio"]:not(:checked):after,
+[type="radio"]:checked:after {
+  content: '\2713\0020';
+  position: absolute;
+  top: .15em; right: 0.1em;
+  font-size: 1.3em;
+  line-height: 0.8;
+  color: #ff801cd6;
+  transition: all .2s;
+  font-family: 'Lucida Sans Unicode', 'Arial Unicode MS', Arial;
+}
+/* checked mark aspect changes */
+[type="radio"]:not(:checked):after {
+  opacity: 0;
+  transform: scale(0);
+}
+[type="radio"]:checked:after {
+  opacity: 1;
+  transform: scale(1);
+}
+/* disabled radio */
+[type="radio"]:disabled:not(:checked):before,
+[type="radio"]:disabled:checked:before {
+  box-shadow: none;
+  border-color: #bbb;
+  background-color: #ddd;
+}
+[type="radio"]:disabled:checked:after {
+  color: #999;
+}
+[type="radio"]:disabled {
+  color: #aaa;
+}

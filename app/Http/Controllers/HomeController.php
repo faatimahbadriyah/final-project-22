@@ -32,7 +32,7 @@ class HomeController extends Controller
     public function admin()
     {
         $lapangan = Lapangan::with(['jadwal' => function ($q) {
-            $q->where('status', 'avaliable');
+            $q->where('status', 'available');
         }])->get();
         return view('index', compact('lapangan'));
     }

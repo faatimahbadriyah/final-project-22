@@ -40,10 +40,10 @@ label .bizcontent{width:100%;}
                         <label class="custom-radio-label" for="jadwal_{{$lap->name}}_{{$j->id}}">{{$j->jam}} --- <strong>Rp.{{$j->harga}}</strong></label>
                     </div> -->
                     <div class="info-block block-info">
-                        <div data-toggle="buttons" class="btn-group">
+                        <div class="btn-group" >
                             <label class="btn btn-secondary">
                                 <div class="bizcontent">
-                                    <input class="checkbox" type="checkbox" name="jadwal_id" value="{{$j->id}}" style="position:absolute; right:0; top:0">
+                                    <input class="radio-custom" type="radio" name="jadwal_id" value="{{$j->id}}" style="position:absolute; right:0; top:0" autocomplete="off">
                                     <div class="row">
                                         <div class="col-12">
                                             <span class="text-sm font-weight-normal">{{$j->jam}}</span>
