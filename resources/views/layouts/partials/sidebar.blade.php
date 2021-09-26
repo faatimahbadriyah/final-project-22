@@ -58,4 +58,5 @@
         </nav>
         <!-- /.sidebar-menu -->
     </div>
-    <!-- /.sideba
+    <!-- /.sidebar -->
+</aside>
