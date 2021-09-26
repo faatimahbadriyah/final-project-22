@@ -13,7 +13,7 @@
                     {{session('success')}}
                 </div>
             @endif
-            
+            <!-- <a class="btn btn-primary mb-3" href="{{route('profiles.create')}}">Buat profil baru</a> -->
         <table class="table table-bordered">
             <!-- <thead>
             <tr>
@@ -50,7 +50,6 @@
                     @empty
                         <tr>
                             <td colspan = "3" align= "center">Belum ada profil</td>
-                            <a class="btn btn-primary mb-3" href="{{route('profiles.create')}}">Buat profil baru</a>
                         </tr>
                 @endforelse
             

@@ -28,18 +28,6 @@ class ProfileController extends Controller
                 
         ]);
 
-        // $query = DB::table('profiles')->insert([
-        //     "title" => $request["title"],
-        //     "body" => $request["body"]
-        // ]);
-
-        // MODEL
-        // $profile = new Profile;
-        // $profile->title = $request["title"];
-        // $profile->body = $request["body"];
-        // $profile->save(); //in SQL, save(); acts like INSERT
-
-        // USING MASS ASSIGNMENT
         $profile = Profile::create([
             "fullname" => $request["fullname"],
             "gender" => $request["gender"],
@@ -48,45 +36,26 @@ class ProfileController extends Controller
             "photo" => $request["photo"],
             "user_id" => Auth::id()
         ]);
-
-        // ALTERNATIVE WAY TO SAVE
-        // $profile = Profile::create([
-        //     "title" => $request["title"],
-        //     "body" => $request["body"]
-        // ]);
-
-        // $user = Auth::user();
-        // $user->profile()->save($profile);
-
-        return redirect('/profiles')->with('success', 'Profil berhasil disimpan.');
-
+        return redirect('profiles')->with('success', 'Profil berhasil disimpan.');
     }
 
     public function index() {
-        // $profile = DB::table('profile')->get(); //select * from profile
-        // dd($profile);
         $user = Auth::user();
-        // $profiles = $user->profiles;
-        $profiles = Profile::all(); // USING MASS ASSIGNMENT
-        // apabila di DD, akan muncul banyak property selain yg kita perlukan
+        $profiles = Profile::all(); 
         return view ('profiles.index', compact('profiles'));
     }
 
     public function show($id) {
-        // $profile = DB::table('profile') -> where('id', $id)->first();
         $profiles = Profile::find($id);
         return view('profiles.show', compact('profiles'));
     }
 
     public function edit($id) {
-        // $profile = DB::table('profile') -> where('id', $id)->first();
         $profiles = Profile::find($id);
         return view('profiles.edit', compact('profiles'));
     }
 
     public function update($id, Request $request) {
-    
-
         $update = Profile::where ('id', $id)->update([
             "fullname" => $request["fullname"],
             "gender" => $request["gender"],
@@ -94,7 +63,6 @@ class ProfileController extends Controller
             "phone" => $request["phone"],
             "photo" => $request["photo"]
         ]);
-
         return redirect('/profiles')->with('success', 'Profile berhasil disimpan!');
     }
 
