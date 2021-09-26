@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="{{asset('adminlte/plugins/summernote/summernote-bs4.min.css')}}">
     <!-- Datatables -->
     @stack('style')
+    @toastr_css
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -107,6 +108,8 @@
     <!-- AdminLTE for demo purposes -->
     <script src="{{asset('adminlte/dist/js/demo.js')}}"></script>
     @stack('scripts')
+    @toastr_js
+    @toastr_render
 </body>
 
 </html>

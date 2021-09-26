@@ -68,6 +68,7 @@ class TransaksiController extends Controller
             $jadwal->update();
         }
 
+        toastr()->success('Data Berhasil Disimpan!');
         return redirect('/transaksi');
     }
 
@@ -124,6 +125,7 @@ class TransaksiController extends Controller
             $oldJadwal->update();
         }
 
+        toastr()->success('Data Berhasil Diubah!');
         return redirect('/transaksi');
     }
 

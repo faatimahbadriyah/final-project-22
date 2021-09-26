@@ -54,6 +54,7 @@ class JadwalController extends Controller
             'status' => 'available'
         ]);
 
+        toastr()->success('Data Berhasil Disimpan!');
         return redirect('/jadwal');
     }
 
@@ -101,6 +102,8 @@ class JadwalController extends Controller
         $jadwal->harga = $request->harga;
         $jadwal->lapangan_id = $request->lapangan_id;
         $jadwal->update();
+
+        toastr()->success('Data Berhasil Diubah!');
         return redirect('/jadwal');
     }
 

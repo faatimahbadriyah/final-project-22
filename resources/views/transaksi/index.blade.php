@@ -3,6 +3,20 @@
 Transaksi Booking
 @endsection
 
+@push('scripts')
+  <script src="{{asset('adminlte/plugins/datatables/jquery.dataTables.js')}}"></script>
+  <script src="{{asset('adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.js')}}"></script>
+  <script>
+    $(function () {
+      $("#example1").DataTable();
+    });
+  </script>
+@endpush
+
+@push('style')
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.11.2/datatables.min.css"/>
+@endpush
+
 @section('content')
 <div class="card-header">
     <h3 class="card-title"><a href="/transaksi/create" class="btn btn-success"><i class="fa fa-plus"></i> Tambah
